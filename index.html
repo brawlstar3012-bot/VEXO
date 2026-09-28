@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEXO — Ton assistant scolaire</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <span>🐋</span> VEXO
+    </div>
+
+    <nav>
+      <button onclick="showPage('home')">Accueil</button>
+      <button onclick="showPage('chat')">VEXO IA</button>
+      <button onclick="showPage('subjects')">Matières</button>
+    </nav>
+
+    <button class="premium-btn" onclick="openPremium()">
+      ⭐ Premium
+    </button>
+  </header>
+
+  <main>
+
+    <!-- ACCUEIL -->
+    <section id="home" class="page active">
+
+      <div class="hero">
+        <div class="hero-text">
+          <span class="badge">🧠 Assistant scolaire IA</span>
+
+          <h1>
+            Comprends tes cours.
+            <span>Réussis tes exercices.</span>
+          </h1>
+
+          <p>
+            VEXO t'aide à comprendre tes exercices
+            avec des explications simples et étape par étape.
+          </p>
+
+          <div class="hero-buttons">
+            <button class="primary-btn" onclick="showPage('chat')">
+              🚀 Commencer
+            </button>
+
+            <button class="secondary-btn" onclick="showPage('subjects')">
+              📚 Voir les matières
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="orb">🐋</div>
+
+          <h3>VEXO IA</h3>
+          <p>Prêt à t'aider dans tes devoirs.</p>
+
+          <div class="mini-message">
+            👋 Bonjour ! Quel exercice veux-tu comprendre ?
+          </div>
+        </div>
+      </div>
+
+      <div class="features">
+
+        <div class="feature">
+          <div>📸</div>
+          <h3>Photo d'exercice</h3>
+          <p>Envoie une photo de ton exercice.</p>
+        </div>
+
+        <div class="feature">
+          <div>🧠</div>
+          <h3>Explications</h3>
+          <p>Comprends chaque étape de la solution.</p>
+        </div>
+
+        <div class="feature">
+          <div>📚</div>
+          <h3>Plusieurs matières</h3>
+          <p>Maths, français, sciences et plus.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CHAT -->
+    <section id="chat" class="page">
+
+      <div class="chat-container">
+
+        <div class="chat-header">
+          <div>
+            <h2>💬 VEXO IA</h2>
+            <p>Ton assistant scolaire</p>
+          </div>
+
+          <button onclick="newConversation()" class="small-btn">
+            ↻ Nouvelle conversation
+          </button>
+        </div>
+
+        <div id="messages" class="messages">
+
+          <div class="message ai">
+            <div class="avatar">🐋</div>
+            <div class="bubble">
+              Salut ! 👋 Je suis VEXO.
+              <br><br>
+              Envoie-moi une question ou un exercice et je vais t'aider à le comprendre.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="quick-actions">
+
+          <button onclick="quickQuestion('Résous cette équation : 2x + 5 = 15')">
+            ➗ Résoudre un exercice
+          </button>
+
+          <button onclick="quickQuestion('Explique-moi les fractions')">
+            📐 Expliquer une notion
+          </button>
+
+          <button onclick="quickQuestion('Aide-moi à comprendre ce texte')">
+            📖 Comprendre un texte
+          </button>
+
+        </div>
+
+        <div class="upload-area">
+          <label for="imageInput" class="upload-btn">
+            📷 Ajouter une photo
+          </label>
+
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            onchange="handleImage(event)"
+          >
+
+          <span id="fileName"></span>
+        </div>
+
+        <div class="input-area">
+
+          <textarea
+            id="userInput"
+            placeholder="Écris ton exercice ici..."
+            rows="1"
+          ></textarea>
+
+          <button onclick="sendMessage()" class="send-btn">
+            ➤
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- MATIÈRES -->
+    <section id="subjects" class="page">
+
+      <div class="page-title">
+        <span class="badge">📚 Apprentissage</span>
+
+        <h1>
+          Choisis ta matière
+        </h1>
+
+        <p>
+          VEXO peut t'aider dans différentes matières scolaires.
+        </p>
+      </div>
+
+      <div class="subjects-grid">
+
+        <div class="subject-card" onclick="selectSubject('Mathématiques')">
+          <span>➗</span>
+          <h3>Mathématiques</h3>
+          <p>Équations, géométrie, calculs...</p>
+        </div>
+
+        <div class="subject-card" onclick="selectSubject('Français')">
+          <span>📖</span>
+          <h3>Français</h3>
+          <p>Grammaire, conjugaison, textes...</p>
+        </div>
+
+        <div class="subject-card" onclick="selectSubject('Sciences')">
+          <span>🔬</span>
+          <h3>Sciences</h3>
+          <p>SVT, physique, chimie...</p>
+        </div>
+
+        <div class="subject-card" onclick="selectSubject('Histoire-Géographie')">
+          <span>🌍</span>
+          <h3>Histoire-Géographie</h3>
+          <p>Dates, événements, cartes...</p>
+        </div>
+
+        <div class="subject-card" onclick="selectSubject('Anglais')">
+          <span>🇬🇧</span>
+          <h3>Anglais</h3>
+          <p>Vocabulaire, grammaire...</p>
+        </div>
+
+        <div class="subject-card" onclick="selectSubject('Autre')">
+          <span>📚</span>
+          <h3>Autre</h3>
+          <p>Une autre matière scolaire.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- MODALE PREMIUM -->
+
+  <div id="premiumModal" class="modal">
+
+    <div class="modal-content">
+
+      <button class="close-btn" onclick="closePremium()">×</button>
+
+      <div class="premium-icon">⭐</div>
+
+      <h2>VEXO Premium</h2>
+
+      <p>
+        Découvre les fonctionnalités Premium de VEXO.
+      </p>
+
+      <div class="premium-list">
+        <div>✓ Explications plus détaillées</div>
+        <div>✓ Plus de fonctionnalités</div>
+        <div>✓ Historique des conversations</div>
+        <div>✓ Expériences personnalisées</div>
+      </div>
+
+      <button class="primary-btn" onclick="closePremium()">
+        Bientôt disponible
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
